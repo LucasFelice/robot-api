@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1 (Python 3.10.1 on win32)" generated="20220114 09:16:08.168" rpa="false" schemaversion="2">
+<suite id="s1" name="CarrinhosTest" source="C:\serverest-api\Tests\CarrinhosTest.robot">
+<test id="s1-t1" name="Cadastrar Carrinho com Sucesso">
+<kw name="Login gerado" library="baseProject">
+<kw name="Realizar Login" library="LoginKeywords">
+<arg>${EMAIL_CORRETO}</arg>
+<arg>${PASSWORD_CORRETO}</arg>
+<doc>kw utilizada para login</doc>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>content-type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220114 09:16:08.848" level="INFO">${header} = {'content-type': 'application/json'}</msg>
+<status status="PASS" starttime="20220114 09:16:08.848" endtime="20220114 09:16:08.848"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>email=${EMAIL}</arg>
+<arg>password=${PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220114 09:16:08.848" level="INFO">${body} = {'email': 'fulano@qa.com', 'password': 'teste'}</msg>
+<status status="PASS" starttime="20220114 09:16:08.848" endtime="20220114 09:16:08.848"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>login</arg>
+<arg>${URL_LOCAL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220114 09:16:08.848" level="INFO">Creating Session using : alias=login, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220114 09:16:08.848" endtime="20220114 09:16:08.848"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>login</arg>
+<arg>/login</arg>
+<arg>headers=${header}</arg>
+<arg>json=${body}</arg>
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<msg timestamp="20220114 09:16:08.848" level="INFO">POST Request using : uri=/login, params=None, files=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'content-type': 'application/json'} 
+data=None 
+json={'email': 'fulano@qa.com', 'password': 'teste'}</msg>
+<msg timestamp="20220114 09:16:08.889" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220114 09:16:08.848" endtime="20220114 09:16:08.889"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220114 09:16:08.891" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220114 09:16:08.889" endtime="20220114 09:16:08.891"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20220114 09:16:08.892" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220114 09:16:08.891" endtime="20220114 09:16:08.892"/>
+</kw>
+<status status="PASS" starttime="20220114 09:16:08.848" endtime="20220114 09:16:08.893"/>
+</kw>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<msg timestamp="20220114 09:16:08.895" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20220114 09:16:08.893" endtime="20220114 09:16:08.895"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()["message"]}</arg>
+<arg>${MSG_LOGIN_SUCESSO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220114 09:16:08.895" endtime="20220114 09:16:08.896"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${response.json()["authorization"]}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20220114 09:16:08.897" level="INFO">Length is 192</msg>
+<status status="PASS" starttime="20220114 09:16:08.897" endtime="20220114 09:16:08.897"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${TOKEN}</arg>
+<arg>${response.json()["authorization"]}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20220114 09:16:08.898" level="INFO">${TOKEN} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQyMTYyNTY4LCJleHAiOjE2NDIxNjMxNjh9.i2oSJnO9bkSCzXMOIdZo-Fy33BWTXvolZ1Jrt6HJdQY</msg>
+<status status="PASS" starttime="20220114 09:16:08.897" endtime="20220114 09:16:08.898"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${TOKEN}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220114 09:16:08.898" level="INFO">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQyMTYyNTY4LCJleHAiOjE2NDIxNjMxNjh9.i2oSJnO9bkSCzXMOIdZo-Fy33BWTXvolZ1Jrt6HJdQY</msg>
+<status status="PASS" starttime="20220114 09:16:08.898" endtime="20220114 09:16:08.898"/>
+</kw>
+<status status="PASS" starttime="20220114 09:16:08.847" endtime="20220114 09:16:08.898"/>
+</kw>
+<kw name="Criar Carrinho" library="CarrinhosKeywords_POST">
+<arg>${_ID_PRODUTO}</arg>
+<arg>${QTD_CARRINHO}</arg>
+<doc>kw utilizada para cadastrar carrinhos.</doc>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>content-type=application/json</arg>
+<arg>authorization=${TOKEN}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220114 09:16:08.902" level="INFO">${header} = {'content-type': 'application/json', 'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQyMTYyNTY4LCJleHAiOjE2NDIxNjMxN...</msg>
+<status status="PASS" starttime="20220114 09:16:08.902" endtime="20220114 09:16:08.902"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${body}</var>
+<arg>idproduto=${_ID_PRODUTO}</arg>
+<arg>quantidade=${QTD_CARRINHO}</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20220114 09:16:08.903" level="INFO">${body} = ['idproduto=1xoT1t77yCd5HXdw', 'quantidade=1']</msg>
+<status status="PASS" starttime="20220114 09:16:08.903" endtime="20220114 09:16:08.903"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>carrinhos</arg>
+<arg>${URL_LOCAL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220114 09:16:08.904" level="INFO">Creating Session using : alias=carrinhos, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220114 09:16:08.904" endtime="20220114 09:16:08.905"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>carrinhos</arg>
+<arg>/carrinhos</arg>
+<arg>headers=${header}</arg>
+<arg>json=${body}</arg>
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<msg timestamp="20220114 09:16:08.906" level="INFO">POST Request using : uri=/carrinhos, params=None, files=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'content-type': 'application/json', 'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQyMTYyNTY4LCJleHAiOjE2NDIxNjMxNjh9.i2oSJnO9bkSCzXMOIdZo-Fy33BWTXvolZ1Jrt6HJdQY'} 
+data=None 
+json=['idproduto=1xoT1t77yCd5HXdw', 'quantidade=1']</msg>
+<msg timestamp="20220114 09:16:08.918" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220114 09:16:08.906" endtime="20220114 09:16:08.918"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220114 09:16:08.918" level="INFO">&lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220114 09:16:08.918" endtime="20220114 09:16:08.918"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20220114 09:16:08.919" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220114 09:16:08.918" endtime="20220114 09:16:08.919"/>
+</kw>
+<status status="PASS" starttime="20220114 09:16:08.901" endtime="20220114 09:16:08.920"/>
+</kw>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<msg timestamp="20220114 09:16:08.922" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20220114 09:16:08.922" level="FAIL">400.0 != 201.0</msg>
+<status status="FAIL" starttime="20220114 09:16:08.920" endtime="20220114 09:16:08.922"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()["message"]}</arg>
+<arg>${MSG_CARRINHO_CADASTRADO_SUCESSO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20220114 09:16:08.926" endtime="20220114 09:16:08.926"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${_ID_CARRINHO}</arg>
+<arg>${response.json()['_id']}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20220114 09:16:08.927" endtime="20220114 09:16:08.927"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${_ID_CARRINHO}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20220114 09:16:08.927" endtime="20220114 09:16:08.927"/>
+</kw>
+<tag>@carrinhos</tag>
+<status status="FAIL" starttime="20220114 09:16:08.847" endtime="20220114 09:16:08.928">400.0 != 201.0</status>
+</test>
+<doc>Teste de Produtos</doc>
+<status status="FAIL" starttime="20220114 09:16:08.172" endtime="20220114 09:16:08.931"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">@carrinhos</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="CarrinhosTest">CarrinhosTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
