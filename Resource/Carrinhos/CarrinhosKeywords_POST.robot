@@ -13,7 +13,7 @@ Criar Carrinho
 
     ${body}=                    Create List
     ...                         idproduto=${_ID_PRODUTO}
-    ...                         quantidade=${QTD_CARRINHO}
+    ...                         quantidade=${QTD_PRODUTO}
 
     Create Session  carrinhos   ${URL_LOCAL}   
     ${response}=                POST request     carrinhos   /carrinhos
