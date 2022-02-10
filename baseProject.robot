@@ -8,6 +8,7 @@ Resource    Resource/Usuarios/UsuariosKeywords_GET.robot
 Resource    Resource/Usuarios/UsuariosKeywords_DELETE.robot
 
 Resource    Resource/Login/LoginKeywords.robot
+Resource    Resource/Login/baseLogin.robot
 
 Resource    Resource/Carrinhos/CarrinhosKeywords_POST.robot
 Resource    Resource/Carrinhos/CarrinhosKeywords_GET.robot
