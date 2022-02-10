@@ -42,11 +42,7 @@ Cadastrar Usuário
 
 Cadastrar Usuário Credenciais Vazias
     [Documentation]             kw utilizada para realizar cadastro de usuário
-    ...                         com credenciais (nome, email ou password) vazias.
-
-    # [Arguments]                 ${NOME}
-    # ...                         ${EMAIL}
-    # ...                         ${PASSWORD}                
+    ...                         com credenciais (nome, email ou password) vazias.               
    
     ${header}=                  Create Dictionary
     ...                         content-type=application/json
