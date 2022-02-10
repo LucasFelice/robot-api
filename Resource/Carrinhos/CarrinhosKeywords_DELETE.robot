@@ -9,7 +9,7 @@ Deletar Carrinho
     ...                             authorization=${TOKEN}
    
     Create Session  carrinhos       ${URL_LOCAL}   
-    ${response}=                    DELETE request         carrinhos   /carrinhos
+    ${response}=                    DELETE request         carrinhos   /carrinhos/concluir-compra
     ...                             headers=${header}
         
     Log                             ${response}
