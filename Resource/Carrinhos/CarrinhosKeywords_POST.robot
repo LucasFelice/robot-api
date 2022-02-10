@@ -11,9 +11,13 @@ Criar Carrinho
     ...                         content-type=application/json
     ...                         authorization=${TOKEN}
 
-    ${body}=                    Create List
-    ...                         idproduto=${_ID_PRODUTO}
-    ...                         quantidade=${QTD_PRODUTO}
+    ${produto}  Create Dictionary
+    ...     idProduto=${_ID_PRODUTO}
+    ...     quantidade=${QTD_CARRINHO}
+    ${produto_list} =  Create List      ${produto}
+
+    ${body}  Create Dictionary
+    ...  produtos=${produto_list}
 
     Create Session  carrinhos   ${URL_LOCAL}   
     ${response}=                POST request     carrinhos   /carrinhos
