@@ -2,11 +2,13 @@
 Documentation   Teste de Login
 
 Resource    ../baseProject.robot
+Resource    ../Resource/Login/baseLogin.robot
+
+Force Tags  @login
 
 *** Test Cases ***
 Realizar Login Sucesso
-    # [Tags]  @regression
-    [Tags]  @login
+    [Tags]  @regression         
     Realizar Login                      ${EMAIL_CORRETO}                   ${PASSWORD_CORRETO}      
     Should Be Equal As Numbers          ${response.status_code}            200
     Should Be Equal As Strings          ${response.json()["message"]}      ${MSG_LOGIN_SUCESSO}
@@ -16,22 +18,19 @@ Realizar Login Sucesso
                                   
 Realizar Login credencial email inválido
     # [Tags]  @regression
-    [Tags]  @login
     Realizar Login                      ${EMAIL_INCORRETO}                 ${PASSWORD_CORRETO}
     Should Be Equal As Numbers          ${response.status_code}            401
     Should Be Equal As Strings          ${response.json()["message"]}      ${MSG_EMAIL_OU_SENHA_INCORRETOS}           
 
 Realizar Login credencial password invalido
     # [Tags]  @regression
-    [Tags]  @login
     Realizar Login                      ${EMAIL_CORRETO}                   ${PASSWORD_INCORRETO}      
     Should Be Equal As Numbers          ${response.status_code}            401
     Should Be Equal As Strings          ${response.json()["message"]}      ${MSG_EMAIL_OU_SENHA_INCORRETOS}    
 
 
 Realizar Login credenciais inválidas
-    # [Tags]  @regression
-    [Tags]  @login
+    [Tags]  @regression 
     Realizar Login                      ${EMAIL_INCORRETO}                 ${PASSWORD_INCORRETO} 
     Should Be Equal As Numbers          ${response.status_code}            401
     Should Be Equal As Strings          ${response.json()["message"]}      ${MSG_EMAIL_OU_SENHA_INCORRETOS}        
@@ -39,7 +38,6 @@ Realizar Login credenciais inválidas
 
 Realizar Login credenciais não preenchidas
     # [Tags]  @regression
-    [Tags]  @login
     Realizar Login                      ${empty}                           ${empty}        
     Should Be Equal As Numbers          ${response.status_code}            400
     Should Be Equal As Strings          ${response.json()["email"]}        ${MSG_EMAIL_NÃO_PREENCHIDO}  
@@ -47,7 +45,6 @@ Realizar Login credenciais não preenchidas
 
 Realizar Login email inválidas
     # [Tags]  @regression
-    [Tags]  @login
     Realizar Login                      ${EMAIL_INVALIDO}                 ${PASSWORD_CORRETO}
     Should Be Equal As Numbers          ${response.status_code}           400
     Should Be Equal As Strings          ${response.json()["email"]}       ${MSG_EMAIL_INVALIDO}
