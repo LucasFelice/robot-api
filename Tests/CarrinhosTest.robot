@@ -4,6 +4,7 @@ Documentation   Teste de Produtos
 Resource    ../baseProject.robot
 Resource    ../Resource/Commons/commons.robot
 Resource    ../Resource/Carrinhos/baseCarrinhos.robot
+Resource    ../Resource/Produtos/baseProdutos.robot
 
 Force Tags  @carrinhos
 
@@ -22,7 +23,7 @@ Cadastrar Carrinho com Sucesso
 Buscar todos os Carrinhos em Estoque
     [Tags]  @regression
     Buscar Todos os Carrinhos
-    Should Be Equal As Numbers          ${response.status_code}                      200        
+    Should Be Equal As Numbers          ${response.status_code}                      200       
 
 Buscar Carrinho por ID na URL
     # [Tags]  @regression   
@@ -33,3 +34,4 @@ Finalizar Compra
     [Tags]  @regression
     Deletar Carrinho                       
     Should Be Equal As Numbers           ${response.status_code}                     200
+    Should Be Equal As Strings          ${response.json()["message"]}       ${MSG_CARRINHO_EXCLUIDO_SUCESSO}
