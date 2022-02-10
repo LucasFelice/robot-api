@@ -41,7 +41,7 @@ Buscar Produto por 1 Parâmetro
     # [Tags]  @regression     
     Buscar Produtos por Parâmetros      descricao=${PRODUTO.descricao}                                           
     Should Be Equal As Numbers          ${response.status_code}                     200
-    Should Be Equal As Strings          ${response.json()["produtos"][0]["nome"]}       ${PRODUTO.nome}
+    
 
 Buscar Produto por mais de 1 Parâmetro
     # [Tags]  @regression    
