@@ -12,12 +12,12 @@ Criar Carrinho
     ...                         authorization=${TOKEN}
 
     ${produto}  Create Dictionary
-    ...     idProduto=${_ID_PRODUTO}
-    ...     quantidade=${QTD_CARRINHO}
-    ${produto_list} =  Create List      ${produto}
+    ...                         idProduto=${_ID_PRODUTO}
+    ...                         quantidade=${QTD_CARRINHO}
+    ${produto_list} =           Create List      ${produto}
 
-    ${body}  Create Dictionary
-    ...  produtos=${produto_list}
+    ${body}                     Create Dictionary
+    ...                         produtos=${produto_list}
 
     Create Session  carrinhos   ${URL_LOCAL}   
     ${response}=                POST request     carrinhos   /carrinhos
