@@ -14,8 +14,8 @@ Test Setup  Pegar Token
 Cadastrar Carrinho com Sucesso
     [Tags]  @regression
     Pegar ID do Produto
-    Criar Carrinho                      ${_ID_PRODUTO}                      1                          
-    Should Be Equal As Numbers          ${response.status_code}             201
+    Criar Carrinho                      ${_ID_PRODUTO}                              1                          
+    Should Be Equal As Numbers          ${response.status_code}                     201
     Should Be Equal As Strings          ${response.json()["message"]}       ${MSG_CARRINHO_CADASTRADO_SUCESSO}
     Set Global Variable                 ${_ID_CARRINHO}   ${response.json()['_id']}
     Log                                 ${_ID_CARRINHO}
