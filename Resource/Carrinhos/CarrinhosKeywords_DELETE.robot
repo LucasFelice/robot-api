@@ -2,7 +2,6 @@
 Deletar Carrinho
     [Documentation]             kw utilizada para deletar carrinho.
     
-    # [Arguments]                 ${_ID_CARRINHO}
    
     ${header}=                      Create Dictionary
     ...                             content-type=application/json
