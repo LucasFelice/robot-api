@@ -40,32 +40,32 @@ Cadastrar Usuário Credenciais vazias
 
 Cadastrar Usuário Credencial Email Inválido
     # [Tags]  @regression     
-    Cadastrar Usuário                       ${NOME}        ${EMAIL_INVALIDO}            ${PASSWORD}                       
-    Should Be Equal As Numbers              ${response.status_code}                     400
-    Should Be Equal As Strings              ${response.json()["email"]}                 ${MSG_EMAIL_INVÁLIDO}
+    Cadastrar Usuário                       ${NOME}        ${EMAIL_INVALIDO}    ${PASSWORD}                       
+    Should Be Equal As Numbers              ${response.status_code}             400
+    Should Be Equal As Strings              ${response.json()["email"]}         ${MSG_EMAIL_INVÁLIDO}
 
 Buscar Todos os Usuários
     # [Tags]  @regression       
     Buscar Todos os Usuários                                       
-    Should Be Equal As Numbers              ${response.status_code}                     200
+    Should Be Equal As Numbers              ${response.status_code}             200
 
 Buscar Usuário por 1 Parâmetro
     # [Tags]  @regression      
     Buscar Usuários por Parâmetros          nome=${NOME}                                           
-    Should Be Equal As Numbers              ${response.status_code}                     200
+    Should Be Equal As Numbers              ${response.status_code}             200
 
 Buscar Usuário por mais de 1 Parâmetro
     # [Tags]  @regression   
     Buscar Usuários por Parâmetros          nome=${NOME}    _id=${_ID}                                           
-    Should Be Equal As Numbers              ${response.status_code}                     200
+    Should Be Equal As Numbers              ${response.status_code}             200
 
 Buscar Usuário por ID na URL
     [Tags]  @regression    
     Buscar Usuários por ID na URL                                          
-    Should Be Equal As Numbers              ${response.status_code}                     200
+    Should Be Equal As Numbers              ${response.status_code}             200
 
 Deletar Usuário
     [Tags]  @regression        
     Deletar Usuário                         ${_ID}                                          
-    Should Be Equal As Numbers              ${response.status_code}                     200
-    Should Be Equal As Strings              ${response.json()["message"]}               ${MSG_USUARIO_EXCLUÍDO}
+    Should Be Equal As Numbers              ${response.status_code}             200
+    Should Be Equal As Strings              ${response.json()["message"]}       ${MSG_USUARIO_EXCLUÍDO}
