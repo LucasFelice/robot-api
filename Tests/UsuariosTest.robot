@@ -34,15 +34,15 @@ Cadastrar Usuário Credenciais vazias
     # [Tags]  @regression
     Cadastrar Usuário Credenciais Vazias  
     Should Be Equal As Numbers              ${response.status_code}             400
-    Should Be Equal As Strings              ${response.json()["nome"]}          ${MSG_NOME_OBRIGATÓRIO}
-    Should Be Equal As Strings              ${response.json()["email"]}         ${MSG_EMAIL_OBRIGATÓRIO}
-    Should Be Equal As Strings              ${response.json()["password"]}      ${MSG_SENHA_OBRIGATÓRIO}
+    Should Be Equal As Strings              ${response.json()["nome"]}          ${MSG_NOME_OBRIGATORIO}
+    Should Be Equal As Strings              ${response.json()["email"]}         ${MSG_EMAIL_OBRIGATORIO}
+    Should Be Equal As Strings              ${response.json()["password"]}      ${MSG_SENHA_OBRIGATORIO}
 
 Cadastrar Usuário Credencial Email Inválido
     # [Tags]  @regression     
     Cadastrar Usuário                       ${NOME}        ${EMAIL_INVALIDO}    ${PASSWORD}                       
     Should Be Equal As Numbers              ${response.status_code}             400
-    Should Be Equal As Strings              ${response.json()["email"]}         ${MSG_EMAIL_INVÁLIDO}
+    Should Be Equal As Strings              ${response.json()["email"]}         ${MSG_EMAIL_INVALIDO}
 
 Buscar Todos os Usuários
     # [Tags]  @regression       
@@ -68,4 +68,4 @@ Deletar Usuário
     [Tags]  @regression        
     Deletar Usuário                         ${_ID}                                          
     Should Be Equal As Numbers              ${response.status_code}             200
-    Should Be Equal As Strings              ${response.json()["message"]}       ${MSG_USUARIO_EXCLUÍDO}
+    Should Be Equal As Strings              ${response.json()["message"]}       ${MSG_USUARIO_EXCLUIDO}
