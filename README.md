@@ -35,7 +35,7 @@ Repositório com exemplo de teste para api utilizando o framework: Robot Framewo
 
 ## Como testar:
 - Via terminal de comando:
-  Baixar de localmente o serverest (npx serverest@latest -p 3000)
+  Baixar localmente o serverest (npx serverest@latest -p 3000)
 
   Fornecer o caminho para o arquivo ou diretório de teste. (robot @(TAG desejada) (local do arquivo)/(nome do arquivo).robot)
 
