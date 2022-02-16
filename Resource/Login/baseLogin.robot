@@ -10,7 +10,7 @@ ${MSG_EMAIL_OU_SENHA_INCORRETOS}         Email e/ou senha inválidos
 
 ${MSG_EMAIL_INVALIDO}                    email deve ser um email válido
 
-${MSG_EMAIL_NÃO_PREENCHIDO}              email não pode ficar em branco
-${MSG_SENHA_NÃO_PREENCHIDA}              password não pode ficar em branco
+${MSG_EMAIL_NAO_PREENCHIDO}              email não pode ficar em branco
+${MSG_SENHA_NAO_PREENCHIDA}              password não pode ficar em branco
 
 
