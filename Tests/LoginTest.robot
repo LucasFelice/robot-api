@@ -40,8 +40,8 @@ Realizar Login credenciais não preenchidas
     # [Tags]  @regression
     Realizar Login                      ${empty}                           ${empty}        
     Should Be Equal As Numbers          ${response.status_code}            400
-    Should Be Equal As Strings          ${response.json()["email"]}        ${MSG_EMAIL_NÃO_PREENCHIDO}  
-    Should Be Equal As Strings          ${response.json()["password"]}     ${MSG_SENHA_NÃO_PREENCHIDA}
+    Should Be Equal As Strings          ${response.json()["email"]}        ${MSG_EMAIL_NAO_PREENCHIDO}  
+    Should Be Equal As Strings          ${response.json()["password"]}     ${MSG_SENHA_NAO_PREENCHIDA}
 
 Realizar Login email inválidas
     # [Tags]  @regression
